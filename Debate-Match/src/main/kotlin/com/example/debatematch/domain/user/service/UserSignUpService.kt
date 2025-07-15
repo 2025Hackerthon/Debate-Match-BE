@@ -5,12 +5,14 @@ import com.example.debatematch.domain.user.exception.UserAccountIdDuplicationExc
 import com.example.debatematch.domain.user.persistence.UserRepository
 import com.example.debatematch.domain.user.presentation.dto.UserSignUpRequest
 import jakarta.transaction.Transactional
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import java.util.UUID
 
 @Service
 class UserSignUpService(
     private val userRepository: UserRepository,
+    private val passwordEncoder: PasswordEncoder
 ) {
     @Transactional
     fun execute(request: UserSignUpRequest): UUID?{
@@ -20,7 +22,7 @@ class UserSignUpService(
 
         return userRepository.save(User(
             accountId = request.accountId,
-            password = request.password,
+            password = passwordEncoder.encode(request.password),
             educationLevel = request.educationLevel
         )).id
     }
