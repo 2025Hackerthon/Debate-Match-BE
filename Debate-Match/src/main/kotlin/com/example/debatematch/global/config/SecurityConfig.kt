@@ -42,7 +42,9 @@ class SecurityConfig(
                         "/swagger-ui/**",
                         "/webjars/**",
                         "/swagger-ui.html",
-                        "/user/signup"
+                        "/user/signup",
+                        "/user/login",
+                        "/error"
                     ).permitAll()
                     .anyRequest().authenticated()
             }
