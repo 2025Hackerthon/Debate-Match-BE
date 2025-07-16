@@ -47,6 +47,7 @@ class SecurityConfig(
                         "/error",
                         "/debate/wait",
                         "/debate/done-list",
+                        "/debate/done"
                     ).permitAll()
                     .requestMatchers(
                         "/debate/create"
