@@ -12,7 +12,7 @@ import jakarta.persistence.Table
 class Debate (
     @Enumerated(EnumType.STRING)
     var status: DebateStatus = DebateStatus.WAIT,
-    var summarize: String? = null,
+    var summary: String? = null,
     val title: String
 
 
