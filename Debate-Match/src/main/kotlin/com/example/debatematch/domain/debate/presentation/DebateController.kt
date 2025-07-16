@@ -19,7 +19,8 @@ class DebateController(
     private val debateJoinService: DebateJoinService,
     private val debateUpdateService: DebateUpdateService,
     private val debateWaitingQueryAllService: DebateWaitingQueryAllService,
-    private val debateReadyService: DebateReadyService
+    private val debateReadyService: DebateReadyService,
+    private val debateDoneQueryAllService: DebateDoneQueryAllService
 ) {
     @PostMapping("/create")
     fun create(@RequestBody request: DebateCreateRequest)= debateCreateService.execute(request)
@@ -36,4 +37,7 @@ class DebateController(
 
     @PostMapping("/ready")
     fun ready(@RequestBody request: DebateReadyRequest) = debateReadyService.execute(request)
+
+    @GetMapping("/done-list")
+    fun getDoneAll () = debateDoneQueryAllService.execute()
 }
