@@ -13,19 +13,17 @@ class DebateReadyService(
     private val debateFacade: DebateFacade,
     private val debateRepository: DebateRepository,
 ) {
-    @Transactional(readOnly = true)
+    @Transactional
     fun execute(request: DebateReadyRequest) {
-        val emitter = debateFacade.getEmitterByDebateUuid(request.debateId, request.side)
-
         val debate = debateRepository.findById(request.debateId).orElseThrow()
         if (debate.status == DebateStatus.WAIT) {
             debate.status = DebateStatus.PLAY
         } else
-            {
-                val conEmitter = debateFacade.getEmitterByDebateUuid(request.debateId, DebateSide.CON)
-                conEmitter.send("ready")
-                val proEmitter = debateFacade.getEmitterByDebateUuid(request.debateId, DebateSide.PRO)
-                proEmitter.send("ready")
-            }
+        {
+            val conEmitter = debateFacade.getEmitterByDebateUuid(request.debateId, DebateSide.CON)
+            conEmitter.send("ready")
+            val proEmitter = debateFacade.getEmitterByDebateUuid(request.debateId, DebateSide.PRO)
+            proEmitter.send("ready")
+        }
     }
 }
