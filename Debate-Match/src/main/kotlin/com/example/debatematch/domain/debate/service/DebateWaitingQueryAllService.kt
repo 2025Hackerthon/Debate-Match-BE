@@ -23,7 +23,6 @@ class DebateWaitingQueryAllService(
     fun execute(): List<DebateQueryResponse> {
         val debates = debateRepository.findAllByStatus(DebateStatus.WAIT)
         return debates.map { DebateQueryResponse(title = it.title,
-            //pro = reactionRepository.countByDebateIdAndReaction(it.id!!,DebateSide.PRO),
             tags = debateTagRepository.findAllByDebateId(it.id!!).map { it.tag },
             debateId = it.id!!,
             side = participatedRepository.findAllByDebateId(it.id!!)[0].side.changeSide()

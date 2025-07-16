@@ -10,4 +10,5 @@ import java.util.UUID
 interface ArgumentRepository: JpaRepository<Argument, UUID> {
     fun existsBySideAndLevelAndDebateId(side: DebateSide, level: DebateLevel, debateId: UUID): Boolean
     fun findAllByDebateIdAndLevel(debateId: UUID, level: DebateLevel): List<Argument>
+    fun findAllByDebateId(debateId: UUID): List<Argument>
 }

@@ -4,7 +4,6 @@ import com.example.debatematch.domain.user.facade.UserFacade
 import com.example.debatematch.domain.user.persistence.UserRepository
 import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
-import org.springframework.transaction.support.TransactionTemplate
 
 @Service
 class UserResignService(
