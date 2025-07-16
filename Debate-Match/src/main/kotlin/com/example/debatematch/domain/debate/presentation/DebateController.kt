@@ -23,6 +23,7 @@ class DebateController(
     private val debateReadyService: DebateReadyService,
     private val debateDoneQueryAllService: DebateDoneQueryAllService,
     private val debateDoneQueryService: DebateDoneQueryService,
+    private val debateMyQueryAllService: DebateMyQueryAllService
 ) {
     @PostMapping("/create")
     fun create(
@@ -54,4 +55,7 @@ class DebateController(
     fun getDone(
         @RequestParam id: UUID,
     ) = debateDoneQueryService.execute(id)
+
+    @GetMapping("/my-debate")
+    fun getMyDebate() = debateMyQueryAllService.execute()
 }
