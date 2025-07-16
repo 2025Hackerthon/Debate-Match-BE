@@ -18,8 +18,8 @@ class SwaggerConfig {
 
     private fun apiInfo(): Info {
         return Info()
-            .title("PmanChu API")
-            .description("Pmanchu관련 API")
+            .title("2025 해커톤 API")
+            .description("토론한판 API")
             .version("1.0.0")
     }
 }
