@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import java.util.UUID
 
 @RestController
 @RequestMapping("/debate")
@@ -20,7 +22,8 @@ class DebateController(
     private val debateUpdateService: DebateUpdateService,
     private val debateWaitingQueryAllService: DebateWaitingQueryAllService,
     private val debateReadyService: DebateReadyService,
-    private val debateDoneQueryAllService: DebateDoneQueryAllService
+    private val debateDoneQueryAllService: DebateDoneQueryAllService,
+    private val debateDoneQueryService: DebateDoneQueryService
 ) {
     @PostMapping("/create")
     fun create(@RequestBody request: DebateCreateRequest)= debateCreateService.execute(request)
@@ -40,4 +43,7 @@ class DebateController(
 
     @GetMapping("/done-list")
     fun getDoneAll () = debateDoneQueryAllService.execute()
+
+    @GetMapping("/done")
+    fun getDone (@RequestParam id: UUID) = debateDoneQueryService.execute(id)
 }
