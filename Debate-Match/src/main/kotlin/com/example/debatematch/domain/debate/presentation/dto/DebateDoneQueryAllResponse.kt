@@ -8,5 +8,5 @@ data class DebateDoneQueryAllResponse(
     val debateId: UUID,
     val tags: List<SubjectTag>,
     val con: Int,
-    val pro: Int
+    val pro: Int,
 )

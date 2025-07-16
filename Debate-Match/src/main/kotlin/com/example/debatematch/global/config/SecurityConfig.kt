@@ -18,20 +18,20 @@ import org.springframework.web.cors.CorsUtils
 @EnableWebSecurity
 class SecurityConfig(
     private val objectMapper: ObjectMapper,
-    private val jwtTokenProvider: JwtTokenProvider
+    private val jwtTokenProvider: JwtTokenProvider,
 ) {
     @Bean
     protected fun filterChain(http: HttpSecurity): SecurityFilterChain {
         http
-            .csrf{it.disable()}
-            .formLogin{it.disable()}
-            .httpBasic{it.disable()}
+            .csrf { it.disable() }
+            .formLogin { it.disable() }
+            .httpBasic { it.disable() }
             .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
-
             .authorizeHttpRequests {
                 it
                     .requestMatchers(CorsUtils::isCorsRequest).permitAll()
-                    .requestMatchers("/swagger-ui/index.html",
+                    .requestMatchers(
+                        "/swagger-ui/index.html",
                         "/v2/api-docs",
                         "/v3/api-docs",
                         "/v3/api-docs/**",
@@ -47,21 +47,20 @@ class SecurityConfig(
                         "/error",
                         "/debate/wait",
                         "/debate/done-list",
-                        "/debate/done"
+                        "/debate/done",
                     ).permitAll()
                     .requestMatchers(
-                        "/debate/create"
+                        "/debate/create",
                     ).authenticated()
                     .anyRequest().authenticated()
             }
 
-                http
-                    .addFilterBefore(JwtTokenFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter::class.java)
-                    .addFilterBefore(GlobalExceptionFilter(objectMapper), JwtTokenFilter::class.java)
+        http
+            .addFilterBefore(JwtTokenFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter::class.java)
+            .addFilterBefore(GlobalExceptionFilter(objectMapper), JwtTokenFilter::class.java)
 
         return http.build()
     }
-
 
     @Bean
     protected fun passwordEncoder() = BCryptPasswordEncoder()

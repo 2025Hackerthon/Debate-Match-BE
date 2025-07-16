@@ -1,6 +1,5 @@
 package com.example.debatematch.domain.debate.service
 
-import com.example.debatematch.domain.debate.enum.DebateStatus
 import com.example.debatematch.domain.debate.facade.DebateFacade
 import com.example.debatematch.domain.debate.persistence.DebateRepository
 import com.example.debatematch.domain.debate.presentation.dto.DebateJoinRequest
@@ -16,10 +15,10 @@ class DebateJoinService(
     private val debateFacade: DebateFacade,
     private val debateRepository: DebateRepository,
     private val userFacade: UserFacade,
-    private val participatedRepository: ParticipatedRepository
+    private val participatedRepository: ParticipatedRepository,
 ) {
     @Transactional
-    fun execute(request: DebateJoinRequest):UUID {
+    fun execute(request: DebateJoinRequest): UUID {
         val user = userFacade.currentUser()
 
         var debate = debateRepository.findById(request.debateId).orElseThrow()

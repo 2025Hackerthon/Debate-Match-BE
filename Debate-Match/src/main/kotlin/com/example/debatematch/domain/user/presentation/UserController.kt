@@ -17,10 +17,12 @@ import java.util.*
 class UserController(
     private val userSignUpService: UserSignUpService,
     private val userResignService: UserResignService,
-    private val userLoginService: UserLoginService
+    private val userLoginService: UserLoginService,
 ) {
     @PostMapping("/signup")
-    fun signUp(@RequestBody userSignUpRequest: UserSignUpRequest): UUID? {
+    fun signUp(
+        @RequestBody userSignUpRequest: UserSignUpRequest,
+    ): UUID? {
         return userSignUpService.execute(userSignUpRequest)
     }
 
@@ -30,6 +32,7 @@ class UserController(
     }
 
     @PostMapping("/login")
-    fun login(@RequestBody request: UserLoginRequest) = userLoginService.execute(request)
-
+    fun login(
+        @RequestBody request: UserLoginRequest,
+    ) = userLoginService.execute(request)
 }

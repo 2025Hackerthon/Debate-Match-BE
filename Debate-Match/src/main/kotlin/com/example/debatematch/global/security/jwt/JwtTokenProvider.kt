@@ -14,7 +14,6 @@ import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Component
 import java.util.*
 
-
 @Component
 class JwtTokenProvider(
     private val jwtProperties: JwtProperties,
@@ -34,7 +33,11 @@ class JwtTokenProvider(
         return REFRESH_KEY == getJws(token!!).header["typ"].toString()
     }
 
-    private fun generateAccessToken(id: String, type: String, exp: Long): String =
+    private fun generateAccessToken(
+        id: String,
+        type: String,
+        exp: Long,
+    ): String =
         Jwts.builder()
             .setSubject(id)
             .setHeaderParam("typ", type)
@@ -42,7 +45,6 @@ class JwtTokenProvider(
             .setExpiration(Date(System.currentTimeMillis() + exp * 1000))
             .setIssuedAt(Date())
             .compact()
-
 
     fun resolveToken(request: jakarta.servlet.http.HttpServletRequest): String? =
         request.getHeader(jwtProperties.header)?.also {
@@ -78,4 +80,3 @@ class JwtTokenProvider(
         return authDetailsService.loadUserByUsername(body.subject)
     }
 }
-

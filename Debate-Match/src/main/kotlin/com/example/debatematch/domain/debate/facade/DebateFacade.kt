@@ -12,19 +12,23 @@ class DebateFacade {
         var eimotters: HashMap<String, SseEmitter> = HashMap()
     }
 
-    fun getEmitterByDebateUuid(uuid: UUID, side: DebateSide): SseEmitter {
-        val key = uuid.toString()+side.name
+    fun getEmitterByDebateUuid(
+        uuid: UUID,
+        side: DebateSide,
+    ): SseEmitter {
+        val key = uuid.toString() + side.name
         println(key)
         return eimotters[key] ?: throw RuntimeException("No eimotter for $uuid")
     }
 
-    fun createEmitter(uuid: UUID, side: DebateSide): SseEmitter {
-        val key = uuid.toString()+side.name
+    fun createEmitter(
+        uuid: UUID,
+        side: DebateSide,
+    ): SseEmitter {
+        val key = uuid.toString() + side.name
         val emitter = SseEmitter(Long.MAX_VALUE)
         eimotters[key] = emitter
         println(key)
         return emitter
     }
-
-
 }

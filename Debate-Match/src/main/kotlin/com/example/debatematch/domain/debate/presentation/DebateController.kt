@@ -1,6 +1,5 @@
 package com.example.debatematch.domain.debate.presentation
 
-import com.example.debatematch.domain.debate.persistence.DebateRepository
 import com.example.debatematch.domain.debate.presentation.dto.DebateCreateRequest
 import com.example.debatematch.domain.debate.presentation.dto.DebateJoinRequest
 import com.example.debatematch.domain.debate.presentation.dto.DebateReadyRequest
@@ -23,27 +22,36 @@ class DebateController(
     private val debateWaitingQueryAllService: DebateWaitingQueryAllService,
     private val debateReadyService: DebateReadyService,
     private val debateDoneQueryAllService: DebateDoneQueryAllService,
-    private val debateDoneQueryService: DebateDoneQueryService
+    private val debateDoneQueryService: DebateDoneQueryService,
 ) {
     @PostMapping("/create")
-    fun create(@RequestBody request: DebateCreateRequest)= debateCreateService.execute(request)
-
+    fun create(
+        @RequestBody request: DebateCreateRequest,
+    ) = debateCreateService.execute(request)
 
     @PostMapping("/join")
-    fun join(@RequestBody request: DebateJoinRequest)= debateJoinService.execute(request)
+    fun join(
+        @RequestBody request: DebateJoinRequest,
+    ) = debateJoinService.execute(request)
 
     @PostMapping("/update")
-    fun update(@RequestBody request: DebateUpdateRequest)= debateUpdateService.execute(request)
+    fun update(
+        @RequestBody request: DebateUpdateRequest,
+    ) = debateUpdateService.execute(request)
 
     @GetMapping("/wait")
     fun getWait() = debateWaitingQueryAllService.execute()
 
     @PostMapping("/ready")
-    fun ready(@RequestBody request: DebateReadyRequest) = debateReadyService.execute(request)
+    fun ready(
+        @RequestBody request: DebateReadyRequest,
+    ) = debateReadyService.execute(request)
 
     @GetMapping("/done-list")
-    fun getDoneAll () = debateDoneQueryAllService.execute()
+    fun getDoneAll() = debateDoneQueryAllService.execute()
 
     @GetMapping("/done")
-    fun getDone (@RequestParam id: UUID) = debateDoneQueryService.execute(id)
+    fun getDone(
+        @RequestParam id: UUID,
+    ) = debateDoneQueryService.execute(id)
 }

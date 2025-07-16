@@ -4,6 +4,7 @@ plugins {
     id("org.springframework.boot") version "3.5.3"
     id("io.spring.dependency-management") version "1.1.7"
     kotlin("plugin.jpa") version "1.9.25"
+    id("org.jlleitschuh.gradle.ktlint").version("12.1.0")
 }
 
 group = "com.example"
@@ -41,9 +42,9 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     implementation("io.jsonwebtoken:jjwt:0.9.1")
     implementation("javax.servlet:javax.servlet-api:4.0.1")
-    implementation ("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.7.0")
-    implementation ("javax.xml.bind:jaxb-api:2.3.1")
-    implementation ("org.glassfish.jaxb:jaxb-runtime:2.3.1")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.7.0")
+    implementation("javax.xml.bind:jaxb-api:2.3.1")
+    implementation("org.glassfish.jaxb:jaxb-runtime:2.3.1")
 }
 
 kotlin {

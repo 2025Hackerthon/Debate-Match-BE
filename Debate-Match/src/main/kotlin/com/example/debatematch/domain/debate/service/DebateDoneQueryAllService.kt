@@ -13,20 +13,20 @@ import org.springframework.transaction.annotation.Transactional
 class DebateDoneQueryAllService(
     private val debateRepository: DebateRepository,
     private val reactionRepository: ReactionRepository,
-    private val debateTagRepository: DebateTagRepository
-
-    ) {
+    private val debateTagRepository: DebateTagRepository,
+) {
     @Transactional(readOnly = true)
-    fun execute(): List<DebateDoneQueryAllResponse>{
+    fun execute(): List<DebateDoneQueryAllResponse>  {
         val debates = debateRepository.findAllByStatus(DebateStatus.DONE)
 
-        return debates.map { DebateDoneQueryAllResponse(
-            debateId = it.id!!,
-            title = it.title,
-            tags = debateTagRepository.findAllByDebateId(it.id!!).map { it.tag },
-            con = reactionRepository.countByDebateIdAndReaction(it.id!!, DebateSide.CON),
-            pro = reactionRepository.countByDebateIdAndReaction(it.id!!, DebateSide.PRO)
-        ) }
-
+        return debates.map {
+            DebateDoneQueryAllResponse(
+                debateId = it.id!!,
+                title = it.title,
+                tags = debateTagRepository.findAllByDebateId(it.id!!).map { it.tag },
+                con = reactionRepository.countByDebateIdAndReaction(it.id!!, DebateSide.CON),
+                pro = reactionRepository.countByDebateIdAndReaction(it.id!!, DebateSide.PRO),
+            )
+        }
     }
 }

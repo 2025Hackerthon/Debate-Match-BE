@@ -9,15 +9,13 @@ import jakarta.persistence.Table
 
 @Entity
 @Table(name = "tbl_debate")
-class Debate (
+class Debate(
     @Enumerated(EnumType.STRING)
     var status: DebateStatus = DebateStatus.WAIT,
     var summary: String? = null,
-    val title: String
-
-
-): BaseEntity(){
-    fun updateToDone(){
+    val title: String,
+) : BaseEntity() {
+    fun updateToDone()  {
         status = DebateStatus.DONE
     }
 }

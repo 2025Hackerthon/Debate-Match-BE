@@ -2,7 +2,7 @@ package com.example.debatematch.global.error.exception
 
 enum class ErrorCode(
     val status: Int,
-    val message: String
+    val message: String,
 ) {
     FEIGN_FORBIDDEN(403, "Feign Forbidden"),
 
@@ -17,7 +17,7 @@ enum class ErrorCode(
     INVALID_TOKEN(401, "Invalid Token"),
     EXPIRED_TOKEN(401, "Expired Token"),
     SECRET_KEY_MISS_MATCH(401, "Secret Key Miss Match"),
-    INVALID_DEBATE_REACTION(401,"InvalidDebateReactionException"),
+    INVALID_DEBATE_REACTION(401, "InvalidDebateReactionException"),
 
     EXPIRED_EMAIL_CODE(401, "Expired Email Code"),
     EMAIL_CODE_MISSMATCH(401, "Email Mismatch"),
@@ -56,5 +56,5 @@ enum class ErrorCode(
     FEIGN_SERVER_ERROR(500, "Feign Server Error"),
     GOOGLE_OAUTH_SERVER_ERROR(500, "Google Oauth Server Error"),
     FCM_SERVER_ERROR(500, "Fem Server Error"),
-    FCM_INITIALIZATION_ERROR(500, "FCM Initialization Error")
+    FCM_INITIALIZATION_ERROR(500, "FCM Initialization Error"),
 }

@@ -14,5 +14,4 @@ class DebateTag(
     val debateId: UUID,
     @Enumerated(EnumType.STRING)
     val tag: SubjectTag,
-): BaseEntity() {
-}
+) : BaseEntity()

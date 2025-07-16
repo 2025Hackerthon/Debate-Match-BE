@@ -8,9 +8,12 @@ import java.util.*
 
 @Service
 class SseConnectService(
-    private val debateFacade: DebateFacade
+    private val debateFacade: DebateFacade,
 ) {
-    fun execute(debateId: UUID, side: DebateSide): SseEmitter {
+    fun execute(
+        debateId: UUID,
+        side: DebateSide,
+    ): SseEmitter {
         val emitter = debateFacade.createEmitter(debateId, side)
         emitter.send("HelloWorld")
         return emitter

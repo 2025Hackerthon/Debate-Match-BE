@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class ReactionController(
-    private val reactionService: ReactionService
+    private val reactionService: ReactionService,
 ) {
     @PostMapping("/reaction")
-    fun reaction(@RequestBody request: ReactionRequest) = reactionService.execute(request)
+    fun reaction(
+        @RequestBody request: ReactionRequest,
+    ) = reactionService.execute(request)
 }

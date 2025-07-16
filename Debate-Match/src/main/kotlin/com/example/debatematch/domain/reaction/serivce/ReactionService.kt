@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service
 class ReactionService(
     private val reactionRepository: ReactionRepository,
     private val userFacade: UserFacade,
-    private val debateRepository: DebateRepository
+    private val debateRepository: DebateRepository,
 ) {
     @Transactional
     fun execute(request: ReactionRequest) {
@@ -22,17 +22,22 @@ class ReactionService(
         val debate = debateRepository.findById(request.debateId).orElseThrow()
         if (debate.status != DebateStatus.DONE) throw InvalidDebateReactionException
 
-        val reaction = if (reactionRepository.existsByDebateIdAndUserId(
-                request.debateId,
-                user.id!!
-            )
-        ) reactionRepository.findByDebateIdAndUserId(request.debateId, user.id!!) else reactionRepository.save(
-            Reaction(
-                debateId = request.debateId,
-                userId = user.id!!,
-                request.reaction
-            )
-        )
+        val reaction =
+            if (reactionRepository.existsByDebateIdAndUserId(
+                    request.debateId,
+                    user.id!!,
+                )
+            ) {
+                reactionRepository.findByDebateIdAndUserId(request.debateId, user.id!!)
+            } else {
+                reactionRepository.save(
+                    Reaction(
+                        debateId = request.debateId,
+                        userId = user.id!!,
+                        request.reaction,
+                    ),
+                )
+            }
         reaction!!.reaction = request.reaction
     }
 }

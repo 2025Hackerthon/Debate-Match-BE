@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 class DebateReadyService(
     private val debateFacade: DebateFacade,
-    private val debateRepository: DebateRepository
+    private val debateRepository: DebateRepository,
 ) {
     @Transactional(readOnly = true)
     fun execute(request: DebateReadyRequest) {
@@ -20,14 +20,12 @@ class DebateReadyService(
         val debate = debateRepository.findById(request.debateId).orElseThrow()
         if (debate.status == DebateStatus.WAIT) {
             debate.status = DebateStatus.PLAY
-        } else{
-            val conEmitter = debateFacade.getEmitterByDebateUuid(request.debateId, DebateSide.CON)
-            conEmitter.send("ready")
-            val proEmitter = debateFacade.getEmitterByDebateUuid(request.debateId, DebateSide.PRO)
-            proEmitter.send("ready")
-        }
-
-
+        } else
+            {
+                val conEmitter = debateFacade.getEmitterByDebateUuid(request.debateId, DebateSide.CON)
+                conEmitter.send("ready")
+                val proEmitter = debateFacade.getEmitterByDebateUuid(request.debateId, DebateSide.PRO)
+                proEmitter.send("ready")
+            }
     }
-
 }

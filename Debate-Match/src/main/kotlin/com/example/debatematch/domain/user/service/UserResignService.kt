@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service
 @Service
 class UserResignService(
     private val userRepository: UserRepository,
-    private val userFacade: UserFacade
+    private val userFacade: UserFacade,
 ) {
     @Transactional
     fun execute() {

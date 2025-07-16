@@ -1,8 +1,6 @@
 package com.example.debatematch.domain.debate.service
 
 import com.example.debatematch.domain.debate.domain.Debate
-import com.example.debatematch.domain.debate.enum.DebateSide
-import com.example.debatematch.domain.debate.facade.DebateFacade
 import com.example.debatematch.domain.debate.persistence.DebateRepository
 import com.example.debatematch.domain.debate.presentation.dto.DebateCreateRequest
 import com.example.debatematch.domain.debatetag.DebateTag
@@ -19,7 +17,7 @@ class DebateCreateService(
     private val debateRepository: DebateRepository,
     private val debateTagRepository: DebateTagRepository,
     private val userFacade: UserFacade,
-    private val participatedRepository: ParticipatedRepository
+    private val participatedRepository: ParticipatedRepository,
 ) {
     @Transactional
     fun execute(request: DebateCreateRequest): UUID {
@@ -32,6 +30,5 @@ class DebateCreateService(
         participatedRepository.save(Participated(id, user.id!!, request.side))
 
         return id
-
     }
 }

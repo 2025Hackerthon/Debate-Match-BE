@@ -10,7 +10,6 @@ import java.util.*
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener::class)
 abstract class BaseEntity {
-
     @Id
     @GeneratedValue(generator = "uuid2")
     @Column(columnDefinition = "BINARY(16)", nullable = false)

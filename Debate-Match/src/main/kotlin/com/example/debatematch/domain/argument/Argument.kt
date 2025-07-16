@@ -15,6 +15,5 @@ class Argument(
     val side: DebateSide,
     @Enumerated(EnumType.STRING)
     val level: DebateLevel,
-    val content: String
-): BaseEntity() {
-}
+    val content: String,
+) : BaseEntity()

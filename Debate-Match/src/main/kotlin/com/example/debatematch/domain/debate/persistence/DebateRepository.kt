@@ -7,5 +7,6 @@ import java.util.*
 
 interface DebateRepository : JpaRepository<Debate, UUID> {
     fun findAllByStatus(status: DebateStatus): List<Debate>
+
     override fun findById(id: UUID): Optional<Debate>
 }

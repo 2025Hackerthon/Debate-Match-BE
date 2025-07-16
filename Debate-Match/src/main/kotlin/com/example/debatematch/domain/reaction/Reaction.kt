@@ -14,8 +14,8 @@ class Reaction(
     val debateId: UUID,
     val userId: UUID,
     @Enumerated(EnumType.STRING)
-    var reaction: DebateSide
-): BaseEntity() {
+    var reaction: DebateSide,
+) : BaseEntity() {
     fun update(side: DebateSide) {
         this.reaction = side
     }

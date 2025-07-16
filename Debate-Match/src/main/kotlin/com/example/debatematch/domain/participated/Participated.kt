@@ -16,5 +16,4 @@ class Participated(
     @Enumerated(EnumType.STRING)
     val side: DebateSide,
     val feedback: String? = null,
-): BaseEntity() {
-}
+) : BaseEntity()
