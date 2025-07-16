@@ -45,7 +45,8 @@ class SecurityConfig(
                         "/user/signup",
                         "/user/login",
                         "/error",
-                        "debate/wait"
+                        "/debate/wait",
+                        "/debate/done-list",
                     ).permitAll()
                     .requestMatchers(
                         "/debate/create"
