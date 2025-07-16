@@ -30,10 +30,10 @@ class DebateUpdateService(
             {
                 val arguments = argumentRepository.findAllByDebateIdAndLevel(request.debateId, request.level)
                 val data = arguments.map { SendSseResponse(level = it.level, content = it.content, side = it.side) }
-                val proEimotter = debateFacade.getEmitterByDebateUuid(request.debateId, DebateSide.PRO)
-                proEimotter.send(SseEmitter.event().name("next level").data(data))
-                val conEimotter = debateFacade.getEmitterByDebateUuid(request.debateId, DebateSide.CON)
-                conEimotter.send(SseEmitter.event().name("next level").data(data))
+                val proEmitter = debateFacade.getEmitterByDebateUuid(request.debateId, DebateSide.PRO)
+                proEmitter.send(SseEmitter.event().name("next level").data(data))
+                val conEmitter = debateFacade.getEmitterByDebateUuid(request.debateId, DebateSide.CON)
+                conEmitter.send(SseEmitter.event().name("next level").data(data))
 
                 if (request.level == DebateLevel.CONCLUSION)
                     {
