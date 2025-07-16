@@ -44,8 +44,12 @@ class SecurityConfig(
                         "/swagger-ui.html",
                         "/user/signup",
                         "/user/login",
-                        "/error"
+                        "/error",
+                        "debate/wait"
                     ).permitAll()
+                    .requestMatchers(
+                        "/debate/create"
+                    ).authenticated()
                     .anyRequest().authenticated()
             }
 
