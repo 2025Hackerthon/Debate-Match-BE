@@ -2,6 +2,7 @@ package com.example.debatematch.domain.debate.service
 
 import com.example.debatematch.domain.debate.enum.DebateSide
 import com.example.debatematch.domain.debate.persistence.DebateRepository
+import com.example.debatematch.domain.debate.presentation.dto.DebateDoneMyQueryAllResponse
 import com.example.debatematch.domain.debate.presentation.dto.DebateDoneQueryAllResponse
 import com.example.debatematch.domain.debatetag.persistence.DebateTagRepository
 import com.example.debatematch.domain.participated.persistence.ParticipatedRepository
@@ -19,22 +20,21 @@ class DebateMyQueryAllService(
     private val participatedRepository: ParticipatedRepository
 ) {
     @Transactional(readOnly = true)
-    fun execute():List<DebateDoneQueryAllResponse>{
+    fun execute():List<DebateDoneMyQueryAllResponse>{
         val user = userFacade.currentUser()
 
         val participated = participatedRepository.findAllByUserId(user.id!!)
 
-        val debates = participated.map {
-            debateRepository.findById(it.debateId).orElseThrow()
-        }
+        return participated.map {
+            val debate = debateRepository.findById(it.debateId).orElseThrow()
 
-        return debates.map {
-            DebateDoneQueryAllResponse(
-                debateId = it.id!!,
-                title = it.title,
-                tags = debateTagRepository.findAllByDebateId(it.id!!).map { it.tag },
-                con = reactionRepository.countByDebateIdAndReaction(it.id!!, DebateSide.CON),
-                pro = reactionRepository.countByDebateIdAndReaction(it.id!!, DebateSide.PRO),
+            DebateDoneMyQueryAllResponse(
+                debateId = debate.id!!,
+                title = debate.title,
+                tags = debateTagRepository.findAllByDebateId(debate.id!!).map { it.tag },
+                con = reactionRepository.countByDebateIdAndReaction(debate.id!!, DebateSide.CON),
+                pro = reactionRepository.countByDebateIdAndReaction(debate.id!!, DebateSide.PRO),
+                side = it.side
             )
         }
     }
