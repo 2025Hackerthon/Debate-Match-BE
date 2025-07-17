@@ -13,4 +13,6 @@ interface ParticipatedRepository : JpaRepository<Participated, UUID> {
     ): Participated?
 
     fun findAllByUserId(userId: UUID): List<Participated>
+
+    fun countByDebateId(debateId: UUID): Int
 }
