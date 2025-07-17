@@ -6,6 +6,7 @@ import com.example.debatematch.global.security.jwt.JwtTokenProvider
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.security.config.Customizer
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.http.SessionCreationPolicy
@@ -23,6 +24,7 @@ class SecurityConfig(
     @Bean
     protected fun filterChain(http: HttpSecurity): SecurityFilterChain {
         http
+            .cors(Customizer.withDefaults())
             .csrf { it.disable() }
             .formLogin { it.disable() }
             .httpBasic { it.disable() }
