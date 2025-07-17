@@ -40,6 +40,7 @@ enum class ErrorCode(
 
     NOT_ADMIN(403, "Not an Admin"),
     NOT_STUDENT(403, "Not an Student"),
+    CANCEL_INPUT_ERROR(401, "Cancel Input Error"),
 
     FEIGN_BAD_REQUEST(400, "Feign Bad Request"),
     FILE_IS_EMPTY(400, "File does not exist"),
