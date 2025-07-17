@@ -16,6 +16,10 @@ spring:
     open-in-view: false
     database: mysql
 
+gemini:
+  api-key: ${API_KEY}
+
+
 
 auth:
   jwt:
@@ -23,4 +27,5 @@ auth:
     accessExp: ${JWT_ACCESS_EXP}
     header: ${JWT_HEADER}
     prefix: ${JWT_PREFIX}
+
 
