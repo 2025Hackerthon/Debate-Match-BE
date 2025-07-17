@@ -20,5 +20,6 @@ class DebateJoinCancelService(
         participatedRepository.deleteByDebateIdAndSide(debateId = debateId, side = request.side)
         debateRepository.findById(debateId).orElseThrow().status = DebateStatus.WAIT
         debateFacade.deleteEmitterByDebateUuid(debateId, request.side)
+        debateRepository.findById(debateId)
     }
 }
