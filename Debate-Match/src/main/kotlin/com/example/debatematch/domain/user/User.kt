@@ -1,5 +1,6 @@
 package com.example.debatematch.domain.user
 
+import com.example.debatematch.domain.debate.enum.DebateLevel
 import com.example.debatematch.domain.user.enum.EducationLevel
 import com.example.debatematch.global.base.BaseEntity
 import jakarta.persistence.*
@@ -16,5 +17,5 @@ class User(
     val password: String,
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    val educationLevel: EducationLevel,
+    var educationLevel: EducationLevel,
 ) : BaseEntity()
