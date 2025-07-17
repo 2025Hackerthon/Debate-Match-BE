@@ -16,12 +16,12 @@ class DebateJoinService(
     private val debateFacade: DebateFacade,
     private val debateRepository: DebateRepository,
     private val userFacade: UserFacade,
-    private val participatedRepository: ParticipatedRepository,
+    private val participatedRepository: ParticipatedRepository
 ) {
     @Transactional
     fun execute(request: DebateJoinRequest): UUID {
         val user = userFacade.currentUser()
-        if(participatedRepository.countByDebateId(request.debateId)==2){
+        if (participatedRepository.countByDebateId(request.debateId) == 2) {
             throw AlreadyStartedDebateException
         }
 

@@ -59,4 +59,3 @@ data class Feedback(
     val agree: String?,
     val disagree: String?
 )
-

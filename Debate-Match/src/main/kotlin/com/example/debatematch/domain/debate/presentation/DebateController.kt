@@ -4,14 +4,21 @@ import com.example.debatematch.domain.debate.presentation.dto.DebateCreateReques
 import com.example.debatematch.domain.debate.presentation.dto.DebateJoinRequest
 import com.example.debatematch.domain.debate.presentation.dto.DebateReadyRequest
 import com.example.debatematch.domain.debate.presentation.dto.DebateUpdateRequest
-import com.example.debatematch.domain.debate.service.*
+import com.example.debatematch.domain.debate.service.DebateCreateService
+import com.example.debatematch.domain.debate.service.DebateDoneQueryAllService
+import com.example.debatematch.domain.debate.service.DebateDoneQueryService
+import com.example.debatematch.domain.debate.service.DebateJoinService
+import com.example.debatematch.domain.debate.service.DebateMyQueryAllService
+import com.example.debatematch.domain.debate.service.DebateReadyService
+import com.example.debatematch.domain.debate.service.DebateUpdateService
+import com.example.debatematch.domain.debate.service.DebateWaitingQueryAllService
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
-import java.util.UUID
+import java.util.*
 
 @RestController
 @RequestMapping("/debate")
@@ -27,17 +34,17 @@ class DebateController(
 ) {
     @PostMapping("/create")
     fun create(
-        @RequestBody request: DebateCreateRequest,
+        @RequestBody request: DebateCreateRequest
     ) = debateCreateService.execute(request)
 
     @PostMapping("/join")
     fun join(
-        @RequestBody request: DebateJoinRequest,
+        @RequestBody request: DebateJoinRequest
     ) = debateJoinService.execute(request)
 
     @PostMapping("/update")
     fun update(
-        @RequestBody request: DebateUpdateRequest,
+        @RequestBody request: DebateUpdateRequest
     ) = debateUpdateService.execute(request)
 
     @GetMapping("/wait")
@@ -45,7 +52,7 @@ class DebateController(
 
     @PostMapping("/ready")
     fun ready(
-        @RequestBody request: DebateReadyRequest,
+        @RequestBody request: DebateReadyRequest
     ) = debateReadyService.execute(request)
 
     @GetMapping("/done-list")
@@ -53,7 +60,7 @@ class DebateController(
 
     @GetMapping("/done")
     fun getDone(
-        @RequestParam id: UUID,
+        @RequestParam id: UUID
     ) = debateDoneQueryService.execute(id)
 
     @GetMapping("/my-debate")

@@ -2,7 +2,7 @@ package com.example.debatematch.domain.debate.enum
 
 enum class DebateSide(val side: String) {
     PRO("찬성측"), // 찬성
-    CON("반대측"), // 반대
+    CON("반대측") // 반대
     ;
 
     fun changeSide(): DebateSide {

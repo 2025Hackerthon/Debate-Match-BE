@@ -4,5 +4,5 @@ import com.example.debatematch.global.error.exception.CustomException
 import com.example.debatematch.global.error.exception.ErrorCode
 
 object InvalidDebateReactionException : CustomException(
-    ErrorCode.INVALID_DEBATE_REACTION,
+    ErrorCode.INVALID_DEBATE_REACTION
 )

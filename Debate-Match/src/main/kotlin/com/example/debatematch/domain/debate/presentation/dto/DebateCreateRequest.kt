@@ -6,5 +6,5 @@ import com.example.debatematch.domain.debatetag.enum.SubjectTag
 data class DebateCreateRequest(
     val tagList: List<SubjectTag>,
     val title: String,
-    val side: DebateSide,
+    val side: DebateSide
 )

@@ -14,16 +14,15 @@ import org.springframework.stereotype.Service
 class UserLoginService(
     private val userRepository: UserRepository,
     private val passwordEncoder: PasswordEncoder,
-    private val jwtTokenProvider: JwtTokenProvider,
+    private val jwtTokenProvider: JwtTokenProvider
 ) {
     @Transactional
-    fun execute(request: UserLoginRequest): TokenResponse  {
+    fun execute(request: UserLoginRequest): TokenResponse {
         val user = userRepository.findByAccountId(request.accountId) ?: throw UserNotFoundException
 
-        if (!passwordEncoder.matches(request.password, user.password))
-            {
-                throw PasswordMissMatch
-            }
+        if (!passwordEncoder.matches(request.password, user.password)) {
+            throw PasswordMissMatch
+        }
 
         return jwtTokenProvider.generateToken(user.accountId)
     }

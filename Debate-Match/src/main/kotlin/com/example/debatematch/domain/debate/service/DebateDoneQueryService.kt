@@ -15,10 +15,10 @@ class DebateDoneQueryService(
     private val debateRepository: DebateRepository,
     private val argumentRepository: ArgumentRepository,
     private val userFacade: UserFacade,
-    private val participatedRepository: ParticipatedRepository,
+    private val participatedRepository: ParticipatedRepository
 ) {
     @Transactional(readOnly = true)
-    fun execute(debateId: UUID): DebateDoneQueryResponse  {
+    fun execute(debateId: UUID): DebateDoneQueryResponse {
         val user = userFacade.currentUserOrNull()
 
         val arguments = argumentRepository.findAllByDebateId(debateId)
@@ -29,7 +29,7 @@ class DebateDoneQueryService(
         return DebateDoneQueryResponse(
             summary = debate.summary,
             feedback = feedback,
-            data = arguments.map { Argument(it.level, it.content, it.side) },
+            data = arguments.map { Argument(it.level, it.content, it.side) }
         )
     }
 }

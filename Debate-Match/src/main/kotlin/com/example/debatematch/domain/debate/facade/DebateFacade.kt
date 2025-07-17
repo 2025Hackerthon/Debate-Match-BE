@@ -14,7 +14,7 @@ class DebateFacade {
 
     fun getEmitterByDebateUuid(
         uuid: UUID,
-        side: DebateSide,
+        side: DebateSide
     ): SseEmitter {
         val key = uuid.toString() + side.name
         println(key)
@@ -23,7 +23,7 @@ class DebateFacade {
 
     fun createEmitter(
         uuid: UUID,
-        side: DebateSide,
+        side: DebateSide
     ): SseEmitter {
         val key = uuid.toString() + side.name
         val emitter = SseEmitter(Long.MAX_VALUE)

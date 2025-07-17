@@ -6,5 +6,5 @@ enum class EducationLevel() {
     HIGH_SCHOOL,
     UNIVERSITY,
     GRADUATE_SCHOOL,
-    NONE,
+    NONE
 }

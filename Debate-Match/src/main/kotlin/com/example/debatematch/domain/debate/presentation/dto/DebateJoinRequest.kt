@@ -5,5 +5,5 @@ import java.util.UUID
 
 data class DebateJoinRequest(
     val debateId: UUID,
-    val side: DebateSide,
+    val side: DebateSide
 )

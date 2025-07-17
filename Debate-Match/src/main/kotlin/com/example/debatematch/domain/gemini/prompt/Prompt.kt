@@ -1,8 +1,8 @@
 package com.example.debatematch.domain.gemini.prompt
 
-data class Prompt (
+data class Prompt(
     var prompt: String =
-                       """
+        """
 assistant는 항상 JSON 형식으로만 응답해야 합니다.
 다음 찬반 토론 내용을 요약하고, 찬성 측 의견에 대한 피드백과 반대 측 의견에 대한 피드백을 아래 JSON 형식으로 반환하세요.
 

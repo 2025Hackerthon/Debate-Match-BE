@@ -10,7 +10,7 @@ class UserQueryInfoService(
     private val userFacade: UserFacade
 ) {
     @Transactional(readOnly = true)
-    fun execute(): UserQueryInfoResponse{
+    fun execute(): UserQueryInfoResponse {
         val user = userFacade.currentUser()
 
         return UserQueryInfoResponse(educationLevel = user.educationLevel, username = user.accountId)

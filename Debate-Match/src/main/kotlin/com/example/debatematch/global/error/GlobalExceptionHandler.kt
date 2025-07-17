@@ -18,14 +18,14 @@ class GlobalExceptionHandler {
         val code = e.errorCode
         return ResponseEntity(
             ErrorResponse(code.status, code.message),
-            HttpStatus.valueOf(code.status),
+            HttpStatus.valueOf(code.status)
         )
     }
 
     @ExceptionHandler(AccessDeniedException::class)
     fun handleAccessDeniedException(
         e: AccessDeniedException,
-        response: HttpServletResponse,
+        response: HttpServletResponse
     ) {
         response.sendError(HttpServletResponse.SC_FORBIDDEN, "Access Denied")
     }
@@ -35,9 +35,9 @@ class GlobalExceptionHandler {
         return ResponseEntity(
             ErrorResponse(
                 400,
-                e.bindingResult.allErrors[0].defaultMessage,
+                e.bindingResult.allErrors[0].defaultMessage
             ),
-            HttpStatus.BAD_REQUEST,
+            HttpStatus.BAD_REQUEST
         )
     }
 }

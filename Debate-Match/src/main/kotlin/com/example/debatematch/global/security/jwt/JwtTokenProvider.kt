@@ -17,7 +17,7 @@ import java.util.*
 @Component
 class JwtTokenProvider(
     private val jwtProperties: JwtProperties,
-    private val authDetailsService: AuthDetailsService,
+    private val authDetailsService: AuthDetailsService
 ) {
     companion object {
         private const val ACCESS_KEY = "access_token"
@@ -36,7 +36,7 @@ class JwtTokenProvider(
     private fun generateAccessToken(
         id: String,
         type: String,
-        exp: Long,
+        exp: Long
     ): String =
         Jwts.builder()
             .setSubject(id)

@@ -15,6 +15,3 @@ class DebateMatchApplication
 fun main(args: Array<String>) {
     runApplication<DebateMatchApplication>(*args)
 }
-
-
-

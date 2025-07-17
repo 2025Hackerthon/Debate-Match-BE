@@ -19,7 +19,7 @@ import org.springframework.web.cors.CorsUtils
 @EnableWebSecurity
 class SecurityConfig(
     private val objectMapper: ObjectMapper,
-    private val jwtTokenProvider: JwtTokenProvider,
+    private val jwtTokenProvider: JwtTokenProvider
 ) {
     @Bean
     protected fun filterChain(http: HttpSecurity): SecurityFilterChain {
@@ -49,10 +49,10 @@ class SecurityConfig(
                         "/error",
                         "/debate/wait",
                         "/debate/done-list",
-                        "/debate/done",
+                        "/debate/done"
                     ).permitAll()
                     .requestMatchers(
-                        "/debate/create",
+                        "/debate/create"
                     ).authenticated()
                     .anyRequest().authenticated()
             }

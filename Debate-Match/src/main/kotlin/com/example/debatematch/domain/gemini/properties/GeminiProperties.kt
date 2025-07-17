@@ -4,5 +4,5 @@ import org.springframework.beans.factory.annotation.Value
 
 data class GeminiProperties(
     @Value("\${gemini.api-key}")
-    val geminiApiKey: String,
+    val geminiApiKey: String
 )

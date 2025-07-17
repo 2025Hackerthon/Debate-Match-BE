@@ -4,5 +4,5 @@ import com.example.debatematch.global.error.exception.CustomException
 import com.example.debatematch.global.error.exception.ErrorCode
 
 object ExpiredJwtException : CustomException(
-    ErrorCode.EXPIRED_TOKEN,
+    ErrorCode.EXPIRED_TOKEN
 )

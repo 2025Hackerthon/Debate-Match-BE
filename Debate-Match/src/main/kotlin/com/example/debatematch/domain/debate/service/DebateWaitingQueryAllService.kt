@@ -14,7 +14,7 @@ class DebateWaitingQueryAllService(
     private val debateRepository: DebateRepository,
     private val reactionRepository: ReactionRepository,
     private val debateTagRepository: DebateTagRepository,
-    private val participatedRepository: ParticipatedRepository,
+    private val participatedRepository: ParticipatedRepository
 ) {
     @Transactional
     fun execute(): List<DebateQueryResponse> {
@@ -24,7 +24,7 @@ class DebateWaitingQueryAllService(
                 title = it.title,
                 tags = debateTagRepository.findAllByDebateId(it.id!!).map { it.tag },
                 debateId = it.id!!,
-                side = participatedRepository.findAllByDebateId(it.id!!)[0].side.changeSide(),
+                side = participatedRepository.findAllByDebateId(it.id!!)[0].side.changeSide()
             )
         }
     }

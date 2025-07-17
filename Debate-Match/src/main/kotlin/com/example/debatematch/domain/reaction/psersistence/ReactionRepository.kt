@@ -8,16 +8,16 @@ import java.util.UUID
 interface ReactionRepository : JpaRepository<Reaction, UUID> {
     fun countByDebateIdAndReaction(
         debateId: UUID,
-        reaction: DebateSide,
+        reaction: DebateSide
     ): Int
 
     fun findByDebateIdAndUserId(
         debateId: UUID,
-        userId: UUID,
+        userId: UUID
     ): Reaction?
 
     fun existsByDebateIdAndUserId(
         debateId: UUID,
-        userId: UUID,
+        userId: UUID
     ): Boolean
 }

@@ -4,5 +4,5 @@ import com.example.debatematch.global.error.exception.CustomException
 import com.example.debatematch.global.error.exception.ErrorCode
 
 object UserAccountIdDuplicationException : CustomException(
-    ErrorCode.DUPLICATE_USER,
+    ErrorCode.DUPLICATE_USER
 )

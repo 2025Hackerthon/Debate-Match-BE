@@ -3,7 +3,6 @@ package com.example.debatematch.domain.debate.service
 import com.example.debatematch.domain.debate.enum.DebateSide
 import com.example.debatematch.domain.debate.persistence.DebateRepository
 import com.example.debatematch.domain.debate.presentation.dto.DebateDoneMyQueryAllResponse
-import com.example.debatematch.domain.debate.presentation.dto.DebateDoneQueryAllResponse
 import com.example.debatematch.domain.debatetag.persistence.DebateTagRepository
 import com.example.debatematch.domain.participated.persistence.ParticipatedRepository
 import com.example.debatematch.domain.reaction.psersistence.ReactionRepository
@@ -20,7 +19,7 @@ class DebateMyQueryAllService(
     private val participatedRepository: ParticipatedRepository
 ) {
     @Transactional(readOnly = true)
-    fun execute():List<DebateDoneMyQueryAllResponse>{
+    fun execute(): List<DebateDoneMyQueryAllResponse> {
         val user = userFacade.currentUser()
 
         val participated = participatedRepository.findAllByUserId(user.id!!)

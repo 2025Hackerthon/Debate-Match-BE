@@ -12,21 +12,20 @@ import java.util.UUID
 @Service
 class UserSignUpService(
     private val userRepository: UserRepository,
-    private val passwordEncoder: PasswordEncoder,
+    private val passwordEncoder: PasswordEncoder
 ) {
     @Transactional
-    fun execute(request: UserSignUpRequest): UUID?  {
-        if (userRepository.existsUserByAccountId(request.accountId))
-            {
-                throw UserAccountIdDuplicationException
-            }
+    fun execute(request: UserSignUpRequest): UUID? {
+        if (userRepository.existsUserByAccountId(request.accountId)) {
+            throw UserAccountIdDuplicationException
+        }
 
         return userRepository.save(
             User(
                 accountId = request.accountId,
                 password = passwordEncoder.encode(request.password),
-                educationLevel = request.educationLevel,
-            ),
+                educationLevel = request.educationLevel
+            )
         ).id
     }
 }

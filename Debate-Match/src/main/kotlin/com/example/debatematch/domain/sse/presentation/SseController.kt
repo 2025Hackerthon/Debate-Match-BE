@@ -12,11 +12,11 @@ import java.util.UUID
 @RestController
 @RequestMapping("/sse")
 class SseController(
-    private val sseConnectService: SseConnectService,
+    private val sseConnectService: SseConnectService
 ) {
     @GetMapping(path = ["/connect"], produces = [MediaType.TEXT_EVENT_STREAM_VALUE])
     fun connect(
         @RequestParam debateId: UUID,
-        side: DebateSide,
+        side: DebateSide
     ) = sseConnectService.execute(debateId, side)
 }

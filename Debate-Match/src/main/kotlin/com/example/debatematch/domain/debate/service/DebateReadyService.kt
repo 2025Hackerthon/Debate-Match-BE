@@ -11,15 +11,14 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 class DebateReadyService(
     private val debateFacade: DebateFacade,
-    private val debateRepository: DebateRepository,
+    private val debateRepository: DebateRepository
 ) {
     @Transactional
     fun execute(request: DebateReadyRequest) {
         val debate = debateRepository.findById(request.debateId).orElseThrow()
         if (debate.status == DebateStatus.WAIT) {
             debate.status = DebateStatus.PLAY
-        } else
-        {
+        } else {
             val conEmitter = debateFacade.getEmitterByDebateUuid(request.debateId, DebateSide.CON)
             conEmitter.send("ready")
             val proEmitter = debateFacade.getEmitterByDebateUuid(request.debateId, DebateSide.PRO)

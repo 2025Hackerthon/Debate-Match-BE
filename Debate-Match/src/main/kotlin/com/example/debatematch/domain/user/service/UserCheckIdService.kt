@@ -11,7 +11,7 @@ class UserCheckIdService(
 ) {
     @Transactional(readOnly = true)
     fun execute(accountId: String) {
-        if(userRepository.existsByAccountId(accountId)){
+        if (userRepository.existsByAccountId(accountId)) {
             throw UserDuplicationException
         }
     }

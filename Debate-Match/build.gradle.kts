@@ -5,6 +5,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.7"
     kotlin("plugin.jpa") version "1.9.25"
     kotlin("plugin.serialization") version "1.9.25" // Kotlin 버전에 맞게
+    id("org.jlleitschuh.gradle.ktlint") version "11.6.1"
 }
 
 group = "com.example"
@@ -49,12 +50,11 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     implementation("io.jsonwebtoken:jjwt:0.9.1")
     implementation("javax.servlet:javax.servlet-api:4.0.1")
-    implementation ("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.7.0")
-    implementation ("javax.xml.bind:jaxb-api:2.3.1")
-    implementation ("org.glassfish.jaxb:jaxb-runtime:2.3.1")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.7.0")
+    implementation("javax.xml.bind:jaxb-api:2.3.1")
+    implementation("org.glassfish.jaxb:jaxb-runtime:2.3.1")
     implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
-
 }
 
 kotlin {

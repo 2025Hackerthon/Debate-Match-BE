@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component
 
 @Component
 class UserFacade(
-    private val userRepository: UserRepository,
+    private val userRepository: UserRepository
 ) {
     fun currentUser(): User {
         val accountId = SecurityContextHolder.getContext().authentication.name

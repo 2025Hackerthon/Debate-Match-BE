@@ -13,9 +13,9 @@ class Debate(
     @Enumerated(EnumType.STRING)
     var status: DebateStatus = DebateStatus.WAIT,
     var summary: String? = null,
-    val title: String,
+    val title: String
 ) : BaseEntity() {
-    fun updateToDone()  {
+    fun updateToDone() {
         status = DebateStatus.DONE
     }
 }

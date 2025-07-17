@@ -15,7 +15,7 @@ enum class SubjectTag(val displayName: String) {
     ETHICS("윤리"),
     SECOND_LANGUAGE("제2외국어"),
     LIBERAL_ARTS("교양"),
-    IT("IT"),
+    IT("IT")
     ;
 
     override fun toString(): String = displayName

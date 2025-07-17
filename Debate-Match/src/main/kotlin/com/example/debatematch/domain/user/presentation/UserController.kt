@@ -3,16 +3,20 @@ package com.example.debatematch.domain.user.presentation
 import com.example.debatematch.domain.user.presentation.dto.UserEditEducationRequest
 import com.example.debatematch.domain.user.presentation.dto.UserLoginRequest
 import com.example.debatematch.domain.user.presentation.dto.UserSignUpRequest
-import com.example.debatematch.domain.user.service.*
+import com.example.debatematch.domain.user.service.UserCheckIdService
+import com.example.debatematch.domain.user.service.UserEditEducationService
+import com.example.debatematch.domain.user.service.UserLoginService
+import com.example.debatematch.domain.user.service.UserQueryInfoService
+import com.example.debatematch.domain.user.service.UserResignService
+import com.example.debatematch.domain.user.service.UserSignUpService
 import org.springframework.web.bind.annotation.DeleteMapping
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
-import org.springframework.web.bind.annotation.CrossOrigin
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.web.bind.annotation.RestController
 import java.util.*
 
 @RestController
@@ -28,7 +32,7 @@ class UserController(
 ) {
     @PostMapping("/signup")
     fun signUp(
-        @RequestBody userSignUpRequest: UserSignUpRequest,
+        @RequestBody userSignUpRequest: UserSignUpRequest
     ): UUID? {
         return userSignUpService.execute(userSignUpRequest)
     }
@@ -40,7 +44,7 @@ class UserController(
 
     @PostMapping("/login")
     fun login(
-        @RequestBody request: UserLoginRequest,
+        @RequestBody request: UserLoginRequest
     ) = userLoginService.execute(request)
 
     @GetMapping("/info")

@@ -4,5 +4,5 @@ enum class DebateLevel(val value: String) {
     INTRODUCTION("입론: "),
     REBUTTAL("반론: "),
     DEFENSE("변론: "),
-    CONCLUSION("최종: "),
+    CONCLUSION("최종: ")
 }

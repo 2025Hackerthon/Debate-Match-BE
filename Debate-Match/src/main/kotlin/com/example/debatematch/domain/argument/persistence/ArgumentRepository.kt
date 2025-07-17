@@ -10,12 +10,12 @@ interface ArgumentRepository : JpaRepository<Argument, UUID> {
     fun existsBySideAndLevelAndDebateId(
         side: DebateSide,
         level: DebateLevel,
-        debateId: UUID,
+        debateId: UUID
     ): Boolean
 
     fun findAllByDebateIdAndLevel(
         debateId: UUID,
-        level: DebateLevel,
+        level: DebateLevel
     ): List<Argument>
 
     fun findAllByDebateId(debateId: UUID): List<Argument>

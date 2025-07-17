@@ -10,5 +10,5 @@ data class DebateDoneMyQueryAllResponse(
     val tags: List<SubjectTag>,
     val side: DebateSide,
     val con: Int,
-    val pro: Int,
+    val pro: Int
 )

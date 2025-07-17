@@ -2,7 +2,7 @@ package com.example.debatematch.global.error.exception
 
 enum class ErrorCode(
     val status: Int,
-    val message: String,
+    val message: String
 ) {
     FEIGN_FORBIDDEN(403, "Feign Forbidden"),
 
@@ -58,5 +58,5 @@ enum class ErrorCode(
     FCM_SERVER_ERROR(500, "Fem Server Error"),
     FCM_INITIALIZATION_ERROR(500, "FCM Initialization Error"),
     DUPLICATED_USER(409, "Duplicate User Error"),
-    ALREADY_STARTED_DEBATE(409, "Already started"),
+    ALREADY_STARTED_DEBATE(409, "Already started")
 }

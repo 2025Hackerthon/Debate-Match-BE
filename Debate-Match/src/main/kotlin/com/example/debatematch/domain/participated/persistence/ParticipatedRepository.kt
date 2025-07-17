@@ -9,7 +9,7 @@ interface ParticipatedRepository : JpaRepository<Participated, UUID> {
 
     fun findByDebateIdAndUserId(
         debateId: UUID,
-        userId: UUID,
+        userId: UUID
     ): Participated?
 
     fun findAllByUserId(userId: UUID): List<Participated>

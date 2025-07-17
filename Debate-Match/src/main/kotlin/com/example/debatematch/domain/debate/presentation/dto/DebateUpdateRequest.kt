@@ -8,5 +8,5 @@ data class DebateUpdateRequest(
     val level: DebateLevel,
     val content: String,
     val debateId: UUID,
-    val side: DebateSide,
+    val side: DebateSide
 )

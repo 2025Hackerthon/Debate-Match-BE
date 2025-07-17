@@ -8,5 +8,5 @@ data class DebateQueryResponse(
     val debateId: UUID,
     val title: String,
     val side: DebateSide,
-    val tags: List<SubjectTag>,
+    val tags: List<SubjectTag>
 )

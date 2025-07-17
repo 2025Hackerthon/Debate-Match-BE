@@ -25,24 +25,22 @@ class DebateUpdateService(
     fun execute(request: DebateUpdateRequest): UUID {
         val id =
             argumentRepository.save(
-                Argument(debateId = request.debateId, side = request.side, level = request.level, content = request.content),
+                Argument(debateId = request.debateId, side = request.side, level = request.level, content = request.content)
             ).id
-        if (argumentRepository.existsBySideAndLevelAndDebateId(request.side.changeSide(), request.level, request.debateId))
-            {
-                val arguments = argumentRepository.findAllByDebateIdAndLevel(request.debateId, request.level)
-                val data = arguments.map { SendSseResponse(level = it.level, content = it.content, side = it.side) }
-                val proEmitter = debateFacade.getEmitterByDebateUuid(request.debateId, DebateSide.PRO)
-                proEmitter.send(SseEmitter.event().name("next level").data(data))
-                val conEmitter = debateFacade.getEmitterByDebateUuid(request.debateId, DebateSide.CON)
-                conEmitter.send(SseEmitter.event().name("next level").data(data))
+        if (argumentRepository.existsBySideAndLevelAndDebateId(request.side.changeSide(), request.level, request.debateId)) {
+            val arguments = argumentRepository.findAllByDebateIdAndLevel(request.debateId, request.level)
+            val data = arguments.map { SendSseResponse(level = it.level, content = it.content, side = it.side) }
+            val proEmitter = debateFacade.getEmitterByDebateUuid(request.debateId, DebateSide.PRO)
+            proEmitter.send(SseEmitter.event().name("next level").data(data))
+            val conEmitter = debateFacade.getEmitterByDebateUuid(request.debateId, DebateSide.CON)
+            conEmitter.send(SseEmitter.event().name("next level").data(data))
 
-                if (request.level == DebateLevel.CONCLUSION)
-                    {
-                        val debate: Debate = debateRepository.findById(request.debateId).orElseThrow()
-                        debate.updateToDone()
-                        debateSummeryService.execute(debate.id!!)
-                    }
+            if (request.level == DebateLevel.CONCLUSION) {
+                val debate: Debate = debateRepository.findById(request.debateId).orElseThrow()
+                debate.updateToDone()
+                debateSummeryService.execute(debate.id!!)
             }
+        }
 
         return id!!
     }

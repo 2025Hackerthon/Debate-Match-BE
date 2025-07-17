@@ -17,7 +17,7 @@ class DebateCreateService(
     private val debateRepository: DebateRepository,
     private val debateTagRepository: DebateTagRepository,
     private val userFacade: UserFacade,
-    private val participatedRepository: ParticipatedRepository,
+    private val participatedRepository: ParticipatedRepository
 ) {
     @Transactional
     fun execute(request: DebateCreateRequest): UUID {

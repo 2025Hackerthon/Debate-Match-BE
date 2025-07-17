@@ -6,5 +6,5 @@ import com.example.debatematch.domain.debate.enum.DebateSide
 data class SendSseResponse(
     val level: DebateLevel,
     val content: String,
-    val side: DebateSide,
+    val side: DebateSide
 )

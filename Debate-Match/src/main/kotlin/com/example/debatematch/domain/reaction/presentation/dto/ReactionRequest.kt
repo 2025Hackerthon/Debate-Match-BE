@@ -5,5 +5,5 @@ import java.util.UUID
 
 data class ReactionRequest(
     val reaction: DebateSide,
-    val debateId: UUID,
+    val debateId: UUID
 )

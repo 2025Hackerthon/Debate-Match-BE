@@ -13,5 +13,5 @@ import java.util.UUID
 class DebateTag(
     val debateId: UUID,
     @Enumerated(EnumType.STRING)
-    val tag: SubjectTag,
+    val tag: SubjectTag
 ) : BaseEntity()

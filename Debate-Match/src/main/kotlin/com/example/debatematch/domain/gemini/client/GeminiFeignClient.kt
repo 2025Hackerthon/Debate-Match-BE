@@ -1,6 +1,5 @@
 package com.example.debatematch.domain.gemini.client
 
-import com.example.debatematch.domain.gemini.domain.DebateSummaryResponse
 import com.example.debatematch.domain.gemini.domain.GeminiRequest
 import com.example.debatematch.domain.gemini.domain.GeminiResponse
 import org.springframework.cloud.openfeign.FeignClient
@@ -15,5 +14,4 @@ interface GeminiFeignClient {
         @RequestParam("key") apiKey: String,
         @RequestBody request: GeminiRequest
     ): GeminiResponse
-
 }
