@@ -1,10 +1,12 @@
 package com.example.debatematch.domain.debate.presentation
 
+import com.example.debatematch.domain.debate.presentation.dto.DebateCancelRequest
 import com.example.debatematch.domain.debate.presentation.dto.DebateCreateRequest
 import com.example.debatematch.domain.debate.presentation.dto.DebateJoinCancelRequest
 import com.example.debatematch.domain.debate.presentation.dto.DebateJoinRequest
 import com.example.debatematch.domain.debate.presentation.dto.DebateReadyRequest
 import com.example.debatematch.domain.debate.presentation.dto.DebateUpdateRequest
+import com.example.debatematch.domain.debate.service.DebateCancelService
 import com.example.debatematch.domain.debate.service.DebateCreateService
 import com.example.debatematch.domain.debate.service.DebateDoneQueryAllService
 import com.example.debatematch.domain.debate.service.DebateDoneQueryService
@@ -35,7 +37,8 @@ class DebateController(
     private val debateDoneQueryAllService: DebateDoneQueryAllService,
     private val debateDoneQueryService: DebateDoneQueryService,
     private val debateMyQueryAllService: DebateMyQueryAllService,
-    private val debateJoinCancelService: DebateJoinCancelService
+    private val debateJoinCancelService: DebateJoinCancelService,
+    private val debateCancelService: DebateCancelService
 ) {
     @PostMapping("/create")
     fun create(
@@ -73,4 +76,7 @@ class DebateController(
 
     @DeleteMapping("/{debateId}/join/cancel")
     fun cancelJoin(@PathVariable debateId: UUID, @RequestBody request: DebateJoinCancelRequest) = debateJoinCancelService.execute(debateId, request)
+
+    @DeleteMapping("/{debateId}/cancel")
+    fun cancel(@PathVariable debateId: UUID, @RequestBody request: DebateCancelRequest) = debateCancelService.execute(debateId, request)
 }
