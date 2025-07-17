@@ -17,7 +17,6 @@ class DebateJoinCancelService(
 ) {
     @Transactional
     fun execute(debateId: UUID, request: DebateJoinCancelRequest) {
-
         participatedRepository.deleteByDebateIdAndSide(debateId = debateId, side = request.side)
         debateRepository.findById(debateId).orElseThrow().status = DebateStatus.WAIT
         debateFacade.deleteEmitterByDebateUuid(debateId, request.side)

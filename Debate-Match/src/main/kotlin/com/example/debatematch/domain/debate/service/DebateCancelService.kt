@@ -16,12 +16,12 @@ class DebateCancelService(
 ) {
     @Transactional
     fun execute(debateId: UUID, request: DebateCancelRequest) {
-        if(argumentRepository.existsBySideAndLevelAndDebateId(side = request.side, level = request.level, debateId = debateId)
-                    || debateRepository.findById(debateId).orElseThrow().status == DebateStatus.PLAY) {
+        if (argumentRepository.existsBySideAndLevelAndDebateId(side = request.side, level = request.level, debateId = debateId) ||
+            debateRepository.findById(debateId).orElseThrow().status == DebateStatus.PLAY
+        ) {
             throw InvalidCancelArgumentException
         }
 
         argumentRepository.deleteByDebateIdAndLevelAndSide(debateId = debateId, level = request.level, side = request.side)
-
     }
 }

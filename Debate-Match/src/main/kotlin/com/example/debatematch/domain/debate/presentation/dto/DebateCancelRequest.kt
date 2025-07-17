@@ -5,5 +5,5 @@ import com.example.debatematch.domain.debate.enum.DebateSide
 
 data class DebateCancelRequest(
     val side: DebateSide,
-    val level: DebateLevel,
+    val level: DebateLevel
 )
