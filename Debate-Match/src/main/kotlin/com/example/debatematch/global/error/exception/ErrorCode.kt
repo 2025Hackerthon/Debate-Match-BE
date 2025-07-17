@@ -57,4 +57,6 @@ enum class ErrorCode(
     GOOGLE_OAUTH_SERVER_ERROR(500, "Google Oauth Server Error"),
     FCM_SERVER_ERROR(500, "Fem Server Error"),
     FCM_INITIALIZATION_ERROR(500, "FCM Initialization Error"),
+    DUPLICATED_USER(409, "Duplicate User Error"),
+    ALREADY_STARTED_DEBATE(409, "Already started"),
 }
