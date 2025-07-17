@@ -4,7 +4,6 @@ import com.example.debatematch.domain.debate.enum.DebateSide
 import org.springframework.stereotype.Component
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter
 import java.util.*
-import kotlin.collections.HashMap
 
 @Component
 class DebateFacade {
@@ -30,5 +29,14 @@ class DebateFacade {
         eimotters[key] = emitter
         println(key)
         return emitter
+    }
+
+    fun deleteEmitterByDebateUuid(
+        uuid: UUID,
+        side: DebateSide
+    ){
+        val key = uuid.toString() + side.name
+        eimotters[key]!!.complete()
+        eimotters.remove(key)
     }
 }
