@@ -5,6 +5,7 @@ enum class ErrorCode(
     val message: String
 ) {
     FEIGN_FORBIDDEN(403, "Feign Forbidden"),
+    DEBATE_NOT_IN_PROGRESS(400, "Debate not in-progress"),
 
     EXISTS_SELF_STUDY_TEACHER(409, "Exists Self Study Teacher"),
     ALREADY_APPLYING_EARLY_RETURN(409, "Already applying For Early Return Application"),
