@@ -1,5 +1,6 @@
 package com.example.debatematch.domain.debate.service
 
+import com.example.debatematch.domain.debate.exception.AlreadyStartedDebateException
 import com.example.debatematch.domain.debate.facade.DebateFacade
 import com.example.debatematch.domain.debate.persistence.DebateRepository
 import com.example.debatematch.domain.debate.presentation.dto.DebateJoinRequest
@@ -20,6 +21,9 @@ class DebateJoinService(
     @Transactional
     fun execute(request: DebateJoinRequest): UUID {
         val user = userFacade.currentUser()
+        if(participatedRepository.countByDebateId(request.debateId)==2){
+            throw AlreadyStartedDebateException
+        }
 
         var debate = debateRepository.findById(request.debateId).orElseThrow()
         participatedRepository.save(Participated(debateId = debate.id!!, userId = user.id!!, side = request.side))
