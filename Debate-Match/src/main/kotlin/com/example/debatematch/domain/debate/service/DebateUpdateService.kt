@@ -19,6 +19,7 @@ class DebateUpdateService(
     private val debateFacade: DebateFacade,
     private val argumentRepository: ArgumentRepository,
     private val debateRepository: DebateRepository,
+    private val debateSummeryService: DebateSummeryService
 ) {
     @Transactional
     fun execute(request: DebateUpdateRequest): UUID {
@@ -39,6 +40,7 @@ class DebateUpdateService(
                     {
                         val debate: Debate = debateRepository.findById(request.debateId).orElseThrow()
                         debate.updateToDone()
+                        debateSummeryService.execute(debate.id!!)
                     }
             }
 
