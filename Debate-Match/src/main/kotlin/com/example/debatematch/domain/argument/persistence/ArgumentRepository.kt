@@ -21,4 +21,6 @@ interface ArgumentRepository : JpaRepository<Argument, UUID> {
     fun findAllByDebateId(debateId: UUID): List<Argument>
 
     fun existsByDebateIdAndLevelAndSide(debateId: UUID, level: DebateLevel, side: DebateSide): Boolean
+
+    fun deleteByDebateIdAndLevelAndSide(debateId: UUID, level: DebateLevel, side: DebateSide)
 }
