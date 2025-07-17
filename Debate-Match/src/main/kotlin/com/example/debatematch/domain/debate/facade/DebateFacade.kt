@@ -34,7 +34,7 @@ class DebateFacade {
     fun deleteEmitterByDebateUuid(
         uuid: UUID,
         side: DebateSide
-    ){
+    ) {
         val key = uuid.toString() + side.name
         eimotters[key]!!.complete()
         eimotters.remove(key)

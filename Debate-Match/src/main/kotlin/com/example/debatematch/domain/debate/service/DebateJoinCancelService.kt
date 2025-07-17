@@ -13,17 +13,15 @@ import java.util.*
 class DebateJoinCancelService(
     private val debateFacade: DebateFacade,
     private val participatedRepository: ParticipatedRepository,
-    private val debateRepository: DebateRepository,
+    private val debateRepository: DebateRepository
 ) {
     @Transactional
-    fun execute(debateId: UUID, request: DebateJoinCancelRequest){
+    fun execute(debateId: UUID, request: DebateJoinCancelRequest) {
 //        if (argumentRepository.existsBySideAndLevelAndDebateId(side = request.side, level = request.level, debateId = debateId)) {
 //            throw DebateNotInProgressException
 //        }
         participatedRepository.deleteByDebateIdAndSide(debateId = debateId, side = request.side)
         debateRepository.findById(debateId).orElseThrow().status = DebateStatus.WAIT
         debateFacade.deleteEmitterByDebateUuid(debateId, request.side)
-
-
     }
 }
