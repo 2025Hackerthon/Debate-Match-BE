@@ -6,12 +6,13 @@ enum class ErrorCode(
 ) {
     FEIGN_FORBIDDEN(403, "Feign Forbidden"),
     DEBATE_NOT_IN_PROGRESS(400, "Debate not in-progress"),
-
+    DUPLICA_EXCEPTION(409, "Duplica exception"),
     EXISTS_SELF_STUDY_TEACHER(409, "Exists Self Study Teacher"),
     ALREADY_APPLYING_EARLY_RETURN(409, "Already applying For Early Return Application"),
     ALREADY_APPLYING_PICNIC(409, "Already applying For Picnic Application"),
     ALREADY_APPLYING_MOVEMENT(409, "Already applying for movement"),
     DUPLICATE_USER(409, "Duplicate User"),
+    PLAYER_ALREADY_OWNED(401, "Player already owned"),
 
     FEIGN_UNAUTHORIZED(401, "Feign UnAuthorized"),
     PASSWORD_MISS_MATCH(401, "Password Miss Match"),
@@ -37,6 +38,7 @@ enum class ErrorCode(
     FLOOR_NOT_FOUND(404, "Floor Not Found"),
     TEACHER_NOT_FOUND(404, "Teacher Not Found"),
     TIMETABLE_NOT_FOUND(404, "Timetable Not Found"),
+    SseEmitterAlreadyCompletedException(400,""),
 
     NOT_ADMIN(403, "Not an Admin"),
     NOT_STUDENT(403, "Not an Student"),
