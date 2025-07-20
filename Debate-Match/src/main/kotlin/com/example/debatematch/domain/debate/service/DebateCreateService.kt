@@ -21,6 +21,7 @@ class DebateCreateService(
 ) {
     @Transactional
     fun execute(request: DebateCreateRequest): UUID {
+        userFacade.checkUser()
         val user = userFacade.currentUser()
 
         val debate = debateRepository.save(Debate(title = request.title))
