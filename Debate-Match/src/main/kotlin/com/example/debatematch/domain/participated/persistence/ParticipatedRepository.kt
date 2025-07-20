@@ -18,4 +18,6 @@ interface ParticipatedRepository : JpaRepository<Participated, UUID> {
     fun countByDebateId(debateId: UUID): Int
 
     fun deleteByDebateIdAndSide(debateId: UUID, side: DebateSide)
+
+    fun existsByDebateIdAndSide(debateId: UUID, side: DebateSide): Boolean
 }
