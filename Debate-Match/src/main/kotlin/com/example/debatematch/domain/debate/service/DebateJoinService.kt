@@ -2,6 +2,7 @@ package com.example.debatematch.domain.debate.service
 
 import com.example.debatematch.domain.debate.enum.DebateSide
 import com.example.debatematch.domain.debate.exception.AlreadyStartedDebateException
+import com.example.debatematch.domain.debate.exception.DuplicaqtionSideException
 import com.example.debatematch.domain.debate.facade.DebateFacade
 import com.example.debatematch.domain.debate.persistence.DebateRepository
 import com.example.debatematch.domain.debate.presentation.dto.DebateJoinRequest
@@ -21,12 +22,16 @@ class DebateJoinService(
 ) {
     @Transactional
     fun execute(request: DebateJoinRequest): UUID {
+        userFacade.checkUser()
         val user = userFacade.currentUser()
         if (participatedRepository.countByDebateId(request.debateId) == 2) {
             throw AlreadyStartedDebateException
         }
 
         var debate = debateRepository.findById(request.debateId).orElseThrow()
+        if(participatedRepository.existsByDebateIdAndSide(request.debateId, request.side)) {
+            throw DuplicaqtionSideException
+        }
         participatedRepository.save(Participated(debateId = debate.id!!, userId = user.id!!, side = request.side))
 
         val conEmitter = debateFacade.getEmitterByDebateUuid(request.debateId, DebateSide.CON)
