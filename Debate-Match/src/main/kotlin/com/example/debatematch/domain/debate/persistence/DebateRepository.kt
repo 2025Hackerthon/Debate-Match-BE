@@ -9,4 +9,6 @@ interface DebateRepository : JpaRepository<Debate, UUID> {
     fun findAllByStatus(status: DebateStatus): List<Debate>
 
     override fun findById(id: UUID): Optional<Debate>
+
+    fun existsByIdAndStatus(id: UUID, status: DebateStatus): Boolean
 }
