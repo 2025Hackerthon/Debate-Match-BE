@@ -6,6 +6,7 @@ import com.example.debatematch.domain.debate.enum.DebateSide
 data class DebateDoneQueryResponse(
     val summary: String?,
     val feedback: String?,
+    val title: String,
     val data: List<Argument>
 )
 

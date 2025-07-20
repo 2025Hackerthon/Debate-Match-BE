@@ -23,13 +23,14 @@ class DebateDoneQueryService(
 
         val arguments = argumentRepository.findAllByDebateId(debateId)
 
-        val feedback = if (user != null) participatedRepository.findByDebateIdAndUserId(debateId, user.id!!)!!.feedback else null
+        val feedback = if (user != null) participatedRepository.findByDebateIdAndUserId(debateId, user.id!!)?.let { it.feedback } else null
 
         val debate = debateRepository.findById(debateId).orElseThrow()
         return DebateDoneQueryResponse(
             summary = debate.summary,
             feedback = feedback,
-            data = arguments.map { Argument(it.level, it.content, it.side) }
+            title = debate.title,
+            data = arguments.map { Argument(it.level, it.content, it.side) }.sortedBy { it.side }.sortedBy{ it.level.ordinal },
         )
     }
 }
